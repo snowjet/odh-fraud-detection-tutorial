@@ -1,4 +1,5 @@
-FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
+# FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
+FROM quay.io/odh-jupyterhub/s2i-spark-minimal-notebook:3.6
 
 USER root
 
