@@ -1,0 +1,20 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: anomoly-detection
+  labels:
+    app: anomoly-detection
+    app.kubernetes.io/component: anomoly-detection
+    app.kubernetes.io/instance: anomoly-detection
+    app.kubernetes.io/part-of: anomoly-detection-app
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: 'quay.io/rarm_sa/anomoly-detection:latest'
+      from:
+        kind: DockerImage
+        name: 'quay.io/rarm_sa/anomoly-detection:latest'

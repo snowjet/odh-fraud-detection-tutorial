@@ -3,6 +3,10 @@ FROM quay.io/odh-jupyterhub/s2i-spark-minimal-notebook:3.6
 
 USER root
 
+RUN pip install boto3 && pip install boto
+RUN pip install pandas
+RUN pip install sklearn
+
 COPY ./* /opt/app-root/src/
 
 RUN mkdir -p /opt/app-root/src/.local/share/jupyter/runtime && chmod -R 777 /opt/app-root/src/
