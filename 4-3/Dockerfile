@@ -2,24 +2,14 @@ FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
 
 USER root
 
-RUN yum install sudo -y
-RUN yum -y install java-1.8.0-openjdk maven && yum clean all
-
 COPY ./* /opt/app-root/src/
 
 RUN mkdir -p /opt/app-root/src/.local/share/jupyter/runtime && chmod -R 777 /opt/app-root/src/
 
-RUN pip install boto3 && pip install boto
-RUN pip install pyspark
-RUN pip install pandas
-RUN pip install sklearn
-
-USER 0
-
 RUN jupyter trust *.ipynb
 
-RUN sudo chmod -R 777 /opt/app-root/src/.local/share/jupyter/notebook_secret
+RUN chmod -R 777 /opt/app-root/src/.local/share/jupyter/notebook_secret
 
-RUN sudo chmod -R 777 /opt/app-root/src/.pki/nssdb
-RUN sudo chmod -R 777 /opt/app-root/src/.local/share/jupyter/nbsignatures.db
+RUN chmod -R 777 /opt/app-root/src/.pki/nssdb
+RUN chmod -R 777 /opt/app-root/src/.local/share/jupyter/nbsignatures.db
 
