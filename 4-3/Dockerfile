@@ -1,5 +1,4 @@
-# FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
-FROM quay.io/odh-jupyterhub/s2i-spark-minimal-notebook:3.6
+FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
 
 USER root
 
@@ -10,8 +9,8 @@ RUN pip install pyspark
 RUN pip install pandas
 RUN pip install sklearn
 
-
 RUN yum install sudo -y
+RUN yum -y install java-1.8.0-openjdk maven && yum clean all
 
 RUN sudo chmod -R 777 /opt/app-root/src
 
@@ -23,7 +22,6 @@ RUN sudo chmod -R 777 /opt/app-root/src/.local/share
 
 RUN sudo mkdir /opt/app-root/src/.local/share/jupyter
 RUN sudo chmod -R 777 /opt/app-root/src/.local/share/jupyter
-
 
 RUN sudo mkdir /opt/app-root/src/.local/share/jupyter/runtime
 RUN sudo chmod -R 777 /opt/app-root/src/.local/share/jupyter/runtime
