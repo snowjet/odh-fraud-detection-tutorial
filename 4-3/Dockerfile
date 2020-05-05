@@ -2,17 +2,15 @@ FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
 
 USER root
 
-RUN -p mkdir /opt/app-root/src/.local/share/jupyter/runtime && chmod -R 777 /opt/app-root/src/
+RUN yum install sudo -y
+RUN yum -y install java-1.8.0-openjdk maven && yum clean all
 
-# COPY . /opt/app-root/src/
+RUN mkdir -p /opt/app-root/src/.local/share/jupyter/runtime && chmod -R 777 /opt/app-root/src/
 
 RUN pip install boto3 && pip install boto
 RUN pip install pyspark
 RUN pip install pandas
 RUN pip install sklearn
-
-RUN yum install sudo -y
-RUN yum -y install java-1.8.0-openjdk maven && yum clean all
 
 USER 0
 
