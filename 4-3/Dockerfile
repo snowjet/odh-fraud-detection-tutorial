@@ -18,3 +18,4 @@ RUN chmod -R 777 /opt/app-root/src/.local/share/jupyter/notebook_secret
 RUN chmod -R 777 /opt/app-root/src/.pki/nssdb
 RUN chmod -R 777 /opt/app-root/src/.local/share/jupyter/nbsignatures.db
 
+USER 10001
