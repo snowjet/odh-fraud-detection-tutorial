@@ -2,7 +2,9 @@ FROM quay.io/jupyteronopenshift/s2i-minimal-notebook-py36
 
 USER root
 
-COPY ./source/anomaly-detection/. /opt/app-root/src/
+RUN -p mkdir /opt/app-root/src/
+
+COPY . /opt/app-root/src/
 
 RUN pip install boto3 && pip install boto
 RUN pip install pyspark
