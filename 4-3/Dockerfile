@@ -5,6 +5,8 @@ USER root
 RUN yum install sudo -y
 RUN yum -y install java-1.8.0-openjdk maven && yum clean all
 
+COPY ./* /opt/app-root/src/
+
 RUN mkdir -p /opt/app-root/src/.local/share/jupyter/runtime && chmod -R 777 /opt/app-root/src/
 
 RUN pip install boto3 && pip install boto
